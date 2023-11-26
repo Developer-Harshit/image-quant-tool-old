@@ -55,7 +55,8 @@ export default component$(() => {
       if (imageElement)
         imageElement.src = URL.createObjectURL(e.target.files[0])
     }
-    e.value = null
+    e.target.value = null
+    console.log(e.target)
   })
   const handleRadio = $((e) => {
     const checkedInput = document.querySelector(
