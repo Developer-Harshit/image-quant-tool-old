@@ -7,10 +7,16 @@ import {
 } from '@builder.io/qwik'
 import Manipulator from './main'
 export default component$(() => {
+  const modes = [
+    { val: 0, id: 'near', text: 'Nearest Color' },
+    { val: 1, id: 'lumi', text: 'By Luminance' },
+    { val: 2, id: 'bw', text: 'Black & White' },
+  ]
+
   const loaded = useSignal(false)
   const loop = useSignal(false)
   const finished = useSignal(false)
-
+  const rmode = useSignal(0)
   const store = useStore({
     palette: [
       '#003049',
@@ -28,6 +34,7 @@ export default component$(() => {
     loaded,
     loop,
     finished,
+    rmode,
   })
 
   const removeColor = $((e) => {
@@ -50,9 +57,15 @@ export default component$(() => {
     }
     e.value = null
   })
+  const handleRadio = $((e) => {
+    const checkedInput = document.querySelector(
+      'input[name="rmode"]:checked'
+    ) as HTMLInputElement
+    if (checkedInput) rmode.value = parseInt(checkedInput.value)
+  })
 
   useVisibleTask$(() => {
-    const manipulator = new Manipulator('sample', store, 2)
+    const manipulator = new Manipulator('sample', store)
     const startButtom = document.getElementById('start-btn')
 
     startButtom.addEventListener('click', () => {
@@ -90,6 +103,21 @@ export default component$(() => {
       </div>
       <div>
         <h2>Controls</h2>
+        <div>
+          {modes.map((m) => (
+            <>
+              <input
+                type="radio"
+                id={m.id}
+                name="rmode"
+                value={m.val}
+                onChange$={handleRadio}
+              />
+              <label for={m.id}>{m.text}</label>
+              <br />
+            </>
+          ))}
+        </div>
         <input
           class="none"
           type="file"
@@ -100,6 +128,7 @@ export default component$(() => {
         <button id="input-btn">
           <label for="img">Select a image</label>
         </button>
+
         <button class={!loaded.value && 'none'} id="start-btn">
           Start
         </button>

@@ -12,10 +12,9 @@ import {
 } from 'three'
 
 class Manipulator {
-  constructor(_imgid, _store, _rmode) {
+  constructor(_imgid, _store) {
     this.imgid = _imgid
 
-    this.renderMode = _rmode
     this.store = _store
 
     this.loader = new TextureLoader()
@@ -144,7 +143,7 @@ class Manipulator {
     this.store.finished.value = false
 
     this.createPalette()
-    this.setShader(this.renderMode, this.store.palette.length)
+    this.setShader(this.store.rmode.value, this.store.palette.length)
     this.frameCount = 0
     this.loop = true
     this.scene = new Scene()
