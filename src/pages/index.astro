@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+import ImageManipulator from '../components/ImageManipulator/ImageManipulator'
+---
+
+<Layout title="Welcome to Astro.">
+  <ImageManipulator />
+
+  <style is:global>
+    ul {
+      font-family: monospace;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 1rem;
+      list-style: none;
+    }
+
+    .colordiv {
+      padding: 1rem;
+      position: relative;
+      cursor: grab;
+    }
+    .colordiv::after {
+      font-family: sans-serif;
+      content: 'X';
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      background-color: white;
+      color: black;
+      padding: 0.2rem;
+      font-size: 0.8rem;
+      max-width: 0.8rem;
+      max-height: 0.8rem;
+    }
+
+    #colorlabel {
+      cursor: pointer;
+      background-color: #f1f1f1;
+      color: black;
+      padding: 0 2rem;
+    }
+
+    #colorlabel:after {
+      content: '+';
+      font-size: 2.5rem;
+    }
+    .none {
+      display: none;
+    }
+
+    body {
+      padding: 0;
+      margin: 0;
+    }
+    div {
+      text-align: center;
+    }
+    img {
+      inline-size: 95%;
+      block-size: 95%;
+      display: inline-block;
+      border: 1px solid white;
+    }
+  </style>
+</Layout>

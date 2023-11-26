@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en" transition:animate="slide">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <nav>
+      <a href="/">home</a>
+      <a href="/man">ha</a>
+      <a href="/about">about</a>
+    </nav>
+    <div>
+      <slot />
+    </div>
+    <style is:global>
+      :root {
+        --accent: 136, 58, 234;
+        --accent-light: 224, 204, 250;
+        --accent-dark: 49, 10, 101;
+        --accent-gradient: linear-gradient(
+          45deg,
+          rgb(var(--accent)),
+          rgb(var(--accent-light)) 30%,
+          white 60%
+        );
+      }
+      /* ===== Scrollbar CSS ===== */
+      /* Firefox */
+      * {
+        scrollbar-width: auto;
+        scrollbar-color: #4e4e50 #13031c;
+      }
+
+      /* Chrome, Edge, and Safari */
+      *::-webkit-scrollbar {
+        width: 11px;
+      }
+
+      *::-webkit-scrollbar-track {
+        background: #13031c;
+      }
+
+      *::-webkit-scrollbar-thumb {
+        background-color: #4e4e50;
+      }
+      /* =====               ===== */
+
+      html {
+        font-family: system-ui, sans-serif;
+        background: #070d1c;
+        color: #efefef;
+        background-size: 224px;
+        scroll-behavior: smooth;
+      }
+    </style>
+  </body>
+</html>

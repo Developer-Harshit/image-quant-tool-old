@@ -1,0 +1,22 @@
+{
+    "name": "image-quantization",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro"
+    },
+    "dependencies": {
+        "@builder.io/qwik": "^1.2.19",
+        "@qwikdev/astro": "^0.2.4",
+        "astro": "^3.6.0",
+        "fast-sort": "^3.4.0",
+        "three": "^0.158.0"
+    },
+    "devDependencies": {
+        "prettier": "3.1.0"
+    }
+}
