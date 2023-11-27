@@ -138,13 +138,13 @@ export default component$(() => {
         <h2>image</h2>
 
         <img id="sample" src="/samples/sample.jpg" />
-        {finished.value && (
-          <h2>
+         
+          <h2 class={!finished.value && 'none'}>
             <a href="#" download="output.png" id="download-sample">
               Download
             </a>
           </h2>
-        )}
+        
       </div>
     </>
   )
