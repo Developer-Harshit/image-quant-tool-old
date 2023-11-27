@@ -137,7 +137,7 @@ export default component$(() => {
       <div>
         <h2>image</h2>
 
-        <img id="sample" src="/samples/sample.jpg" />
+        <img id="sample" src="" />
          
           <h2 class={!finished.value && 'none'}>
             <a href="#" download="output.png" id="download-sample">
