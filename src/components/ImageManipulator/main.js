@@ -29,20 +29,35 @@ class Manipulator {
   getImage() {
     return this.renderer.domElement.toDataURL()
   }
+  _getRes() {
+    let w = this.imageElement.naturalWidth
+    let h = this.imageElement.naturalHeight
+    const pixCount = w * h
+    const result = {
+      w,
+      h,
+    }
+    if (pixCount > 4000000) {
+      const fac = 8000000 / pixCount
+      result.w *= fac
+      result.h *= fac
+      console.log(result)
+    }
+    return result
+  }
   saveImage(imgelemnet) {
     imgelemnet.src = this.renderer.domElement.toDataURL()
     imgelemnet.scrollIntoView(true)
     this.store.finished.value = true
     const downloadAnchor = document.getElementById('download-' + this.imgid)
 
+    downloadAnchor.href = imgelemnet.src
     if (downloadAnchor) {
-      downloadAnchor.href = imgelemnet.src
     }
   }
   resizeCanvas() {
-    let w = this.imageElement.naturalWidth
-    let h = this.imageElement.naturalHeight
-    this.renderer.setSize(w, h)
+    const dimention = this._getRes()
+    this.renderer.setSize(dimention.w, dimention.h)
   }
   setShader(m_type, paletteSize) {
     const modes = [

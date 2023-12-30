@@ -76,11 +76,13 @@ export default component$(() => {
     })
   })
 
+  const myUl = useSignal<HTMLUListElement>()
+
   return (
     <>
       <div>
         <h2>Palette</h2>
-        <ul>
+        <ul ref={myUl}>
           {store.palette.map((col) => (
             <li
               class="colordiv"
@@ -138,13 +140,12 @@ export default component$(() => {
         <h2>image</h2>
 
         <img id="sample" src="/samples/sample.jpg" />
-        {finished.value && (
-          <h2>
-            <a href="#" download="output.png" id="download-sample">
-              Download
-            </a>
-          </h2>
-        )}
+
+        <h2 class={!finished.value && 'none'}>
+          <a href="#" download="output.png" id="download-sample">
+            Download
+          </a>
+        </h2>
       </div>
     </>
   )
